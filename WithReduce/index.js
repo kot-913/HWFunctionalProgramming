@@ -2,23 +2,24 @@ arr = [1, 2, 3, 4, 5, 6, 7];
 
 //==========MAP=========================================
 
-const map = arr.reduce((acc, curent) => {
-  acc.push(curent * 2);
-  return acc;
-}, []);
+const map = (arr, fn) => {
+  return arr.reduce((acc, curent) => [...acc, fn(curent)], []);
+};
 
-console.log(map);
+console.log(map(arr, (curent) => curent * 2));
 
 // ========FILTER=======================================
 
-const filter = arr.reduce((acc, curent) => {
-  if (curent > 3) {
-    acc.push(curent);
-  }
-  return acc;
-}, []);
+const filter = (arr, fn) => {
+  return arr.reduce((acc, elem) => {
+    if (fn(elem)) {
+      return [...acc, elem];
+    }
+    return [...acc];
+  }, []);
+};
 
-console.log(filter);
+console.log(filter(arr, (elem) => elem > 3));
 
 //==========FIND=======================================
 
